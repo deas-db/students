@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Добавить новый класс</h2>
+<form method="post">
+    <label for="grade">Номер класса:</label>
+    <select name="grade" id="grade" required>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+    </select><br>
+
+    <label for="letter">Буква класса:</label>
+    <input type="text" name="letter" id="letter" maxlength="1" required style="width: 40px;"><br>
+
+    <input type="submit" value="Добавить">
+</form>
+
+
+<!-- Кнопка "Вернуться назад" -->
+<button onclick="window.history.back()">Вернуться назад</button>
+
+
+<script>
+    document.getElementById('letter').addEventListener('input', function (e) {
+        let letter = e.target.value;
+
+        // Разрешаем только одну русскую букву и делаем её заглавной
+        if (/^[а-яА-ЯёЁ]$/.test(letter)) {
+            e.target.value = letter.toUpperCase();
+        } else {
+            e.target.value = '';
+        }
+    });
+</script>
+{% endblock %}

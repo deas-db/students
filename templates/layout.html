@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Система поощрений</title>
+</head>
+<body>
+    <header>
+      <nav>
+        <a href="{{ url_for('index') }}">Главная</a>
+        {% if session.get('admin_logged_in') %}
+        | <a href="{{ url_for('add_class') }}">Добавить класс</a>
+        | <a href="{{ url_for('logout') }}">Выйти</a>
+        {% else %}
+        | <a href="{{ url_for('login') }}">Войти</a>
+        {% endif %}
+    </nav>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

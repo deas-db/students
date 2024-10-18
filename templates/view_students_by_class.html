@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Ученики {{ class_info['number'] }}{{ class_info['letter'] }} класса</h1>
+<table>
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+    </tr>
+    {% for student in students %}
+    <tr>
+        <td>{{ student['first_name'] }}</td>
+        <td>{{ student['last_name'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{{ url_for('index') }}">Вернуться к списку классов</a>
+{% endblock %}
